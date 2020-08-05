@@ -1,14 +1,8 @@
-FROM python:3.7-alpine
+FROM python:3
 MAINTAINER rHerbut
-
 ENV PYTHONUNBUFFERED 1
-
-COPY ./requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
-
-RUN mkdir /app
-WORKDIR /app
-COPY ./app /app
-
-RUN adduser -D user
-USER user
+RUN mkdir /code
+WORKDIR /code
+COPY requirements.txt /code/
+RUN pip3 install -r requirements.txt
+COPY . /code/
